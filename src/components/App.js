@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "./App.css";
+import "../styles/App.css";
 const App = () => {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
