@@ -1,34 +1,40 @@
-import React from "react";
-import { useState,useEffect } from "react";
-import "../style/App.css";
+import React, { useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import '../styles/App.css';
 
-const App = ()=>{
-const [text, setText] = useState("");
-const [loading, setLoading] = useState(true);
+function App() {
+  const [markdownText, setMarkdownText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-useEffect(()=>{
-    const timeout = setTimeout(()=>{
-        setLoading(false);
-        setText(text);
-    },1000);
-    return () => clearTimeout(timeout);
-},[]);
-    return(
-        <div className="app">
-         <textarea
-         name="text"
-         value={text}
-         id="text"
-         onChange={(e)=>setText(e.target.value)}
-         className="textarea"
-         ></textarea>
-         <div className="preview">
-            {loading ? <p className="loading">Loading....</p> : <p>{text}</p>}
-         </div>
-        </div>
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, [markdownText]);
 
-    );     
+  const handleTextareaChange = (event) => {
+    setMarkdownText(event.target.value);
+  };
+
+  return (
+    <div className="app">
+      <div className="textarea">
+        <textarea
+          value={markdownText}
+          onChange={handleTextareaChange}
+          placeholder="Write your Markdown here..."
+        ></textarea>
+      </div>
+      <div className="preview">
+        {isLoading ? (
+          <div className="loading">Loading...</div>
+        ) : (
+          <ReactMarkdown>{markdownText}</ReactMarkdown>
+        )}
+      </div>
+    </div>
+  );
 }
-
 
 export default App;
