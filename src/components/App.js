@@ -1,38 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import '../styles/App.css'
+<p>Now I can render any React component on any DOM node I want using ReactDOM.render</p>
 
-const App = () => {
-	const [markdown, setMarkdown] = useState('')
-	const [isLoading, setIsLoading] = useState(false)
+import React from "react";
+import { useState,useEffect } from "react";
+import "../style/App.css";
 
-useEffect(() => {
-		setIsLoading(true)
-		const timer = setTimeout(() => {
-			setIsLoading(false)
-		}, 1000) 
-		return () => clearTimeout(timer)
-	}, [markdown])
 
-	const handleChange = (e) => {
-		setMarkdown(e.target.value)
-	}
-  return (
-	<div className="app">
-			<textarea
-				className="textarea"
-				value={markdown}
-				onChange={handleChange}
-				placeholder="Write your markdown here..."
-			/>
-			<div className="preview">
-				{isLoading ? (
-					<p className="loading">Loading...</p>
-				) : (
-					<p>{markdown}</p>
-				)}
-			</div>
-		</div>
-  )
+const App = ()=>{
+
+const [text, setText] = useState("");
+const [loading, setLoading] = useState(true);
+
+useEffect(()=>{
+    const timeout = setTimeout(()=>{
+        setLoading(false);
+        setText(text);
+    },1000);
+    return () => clearTimeout(timeout);
+},[]);
+
+
+    return(
+        <div className="app">
+         <textarea
+         name="text"
+         value={text}
+         id="text"
+         onChange={(e)=>setText(e.target.value)}
+         className="textarea"
+         ></textarea>
+
+         <div className="preview">
+            {loading ? <p className="loading">Loading....</p> : <p>{text}</p>}
+         </div>
+        </div>
+
+    );     
 }
 
-export default App
+
+export default App;
