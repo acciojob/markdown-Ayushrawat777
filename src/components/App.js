@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Markdown from "markdown-to-jsx";
-import "../styles/App.css";
+import Markdown from 'markdown-to-jsx'
+import "./App.css";
 
 function App() {
   const [value, setValue] = useState("");
