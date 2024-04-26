@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import '../styles/App.css'
-const AppComponent = () => {
-	const [markdown, setMarkdown] = React.useState('')
-	const [isLoading, setIsLoading] = React.useState(false)
 
-	React.useEffect(() => {
+const App = () => {
+	const [markdown, setMarkdown] = useState('')
+	const [isLoading, setIsLoading] = useState(false)
+
+useEffect(() => {
 		setIsLoading(true)
 		const timer = setTimeout(() => {
 			setIsLoading(false)
@@ -15,8 +16,8 @@ const AppComponent = () => {
 	const handleChange = (e) => {
 		setMarkdown(e.target.value)
 	}
-	return (
-		<div className="app">
+  return (
+	<div className="app">
 			<textarea
 				className="textarea"
 				value={markdown}
@@ -31,9 +32,7 @@ const AppComponent = () => {
 				)}
 			</div>
 		</div>
-	)
+  )
 }
-const App = () => {
-	return <AppComponent />
-}
+
 export default App
