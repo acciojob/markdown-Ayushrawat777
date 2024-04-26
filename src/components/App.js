@@ -1,42 +1,37 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Markdown from "markdown-to-jsx";
 import "../styles/App.css";
-const App = () => {
-  const [text, setText] = useState("");
+
+function App() {
+  const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
 
-  useEffect(
-    (e) => {
-      setLoading(true);
-      const timeout = setTimeout(() => {
-        setLoading(false);
-        let result = text.replace("#", "");
-        setText(result);
-      }, 1000);
-      return () => clearTimeout(timeout);
-    },
-    [text]
-  );
+  const handleChange = (e) => setValue(e.target.value);
+
+  const MarkdownPreview = () => <Markdown>{value}</Markdown>;
+
+  const Loading = () => <h1 className="loading">Loading ...</h1>;
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, [value]);
 
   return (
     <div className="app">
       <textarea
-        name="text"
-        id="text"
-        onChange={(e) => setText(e.target.value)}
         className="textarea"
+        value={value}
+        onChange={handleChange}
+        placeholder="Enter some text"
       ></textarea>
       <div className="preview">
-        {loading ? (
-          <p className="loading">Loading....</p>
-        ) : (
-          <h3>
-            <strong>{text}</strong>
-          </h3>
-        )}
+        {loading ? <Loading /> : <MarkdownPreview />}
       </div>
     </div>
   );
-};
+}
 
 export default App;
