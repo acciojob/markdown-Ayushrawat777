@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactMarkdown from 'react-markdown'
 import '../styles/App.css'
 const AppComponent = () => {
 	const [markdown, setMarkdown] = React.useState('')
@@ -28,7 +27,7 @@ const AppComponent = () => {
 				{isLoading ? (
 					<p className="loading">Loading...</p>
 				) : (
-					<ReactMarkdown>{markdown}</ReactMarkdown>
+					<p>{markdown}</p>
 				)}
 			</div>
 		</div>
