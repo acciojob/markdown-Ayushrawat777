@@ -1,29 +1,33 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body {
+  background-color: #e3e1eb;
+}
+.app-container {
+  text-align: center;
+  padding: 13px;
 }
 
-.app {
+.editor-container {
   display: flex;
-  height: 100vh;
+  gap: 20px;
+}
 
-  .textarea,
-  .preview {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    outline: none;
-  }
+.markdown-input {
+  width: 50%;
+  padding: 10px;
+  border:none;
+  outline: none;
+  height: 93vh; 
+  background-color: #f0eeee;
+}
 
-  .textarea {
-    font-size: 1.5rem;
-    resize: none;
-    background-color: #eff1f5;
-  }
-
-  .preview {
-    overflow-y: auto;
-    background-color: #e8eaf1;
-  }
+.markdown-preview {
+  width: 50%;
+  padding: 10px;
+}
+.markdown-preview p {
+  text-align: left;
+  margin-top: 0;
+  font-size: 28px;
+  font-weight: 500;
+  margin-left: 6px;
 }
