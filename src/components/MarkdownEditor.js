@@ -1,21 +1,20 @@
-// MarkdownEditor.js
-import React, { useState } from "react";
-import ReactMarkdown from "react-markdown";
+import React from "react";
 
-const MarkdownEditor = () => {
-  const [markdown, setMarkdown] = useState("");
-
+const MarkdownEditor = ({ markdown, setMarkdown, loading }) => {
   return (
     <div className="editor-container">
       <textarea
-        className="markdown-input"
         value={markdown}
         onChange={(e) => setMarkdown(e.target.value)}
-        placeholder="Enter Markdown here..."
+        className="markdown-input"
       />
-      <div className="markdown-preview">
-    <ReactMarkdown>{markdown}</ReactMarkdown>
-      </div>
+      {loading ? (
+        <p className="loading">Loading...</p>
+      ) : (
+        <div className="markdown-preview">
+          <p>{markdown}</p>
+        </div>
+      )}
     </div>
   );
 };
